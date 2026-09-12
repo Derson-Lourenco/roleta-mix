@@ -1,16 +1,19 @@
 {
+  "id": "/roleta-mix/",
   "short_name": "Roleta MIX",
   "name": "Roleta Premiada MIX",
   "icons": [
     {
       "src": "assets/icons/presente.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "192x192",
+      "purpose": "any maskable"
     },
     {
       "src": "assets/icons/presente.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "512x512",
+      "purpose": "any maskable"
     }
   ],
   "start_url": "./index.html",

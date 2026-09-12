@@ -3,14 +3,23 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Roleta Premiada - Mix</title>
-    <!-- Fontes do Google: Montserrat e Caveat (para o texto manuscrito) -->
+
+    <!-- PWA Meta Tags -->
+    <link rel="manifest" href="./manifest.json">
+    <meta name="theme-color" content="#0E4F36">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Roleta MIX">
+    <link rel="apple-touch-icon" href="assets/icons/presente.png">
+
+    <!-- Fontes do Google: Montserrat e Caveat -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Montserrat:ital,wght@0,400;0,700;0,800;0,900;1,700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Montserrat:ital,wght@0,400;0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
+    
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="css/style.css">
@@ -30,8 +39,6 @@
             <!-- CANTO DIREITO: SLOGAN + ADMIN JUNTOS -->
             <div class="header-right-group">
                 <div class="handwritten-slogan">
-                    <span>    </span>
-                    <span>    </span>
                     <span>Mais</span>
                     <span>que produtos,</span>
                     <span>soluções para</span>
@@ -49,15 +56,12 @@
         <!-- Centro: Área da Roleta Física 3D -->
         <main class="wheel-section">
             <div class="wheel-wrapper">
-                <!-- Ponteiro fixo no topo (Laranja com contorno escuro) -->
                 <div class="wheel-pointer"></div>
 
-                <!-- Container Principal da Roleta com Moldura Verde -->
                 <div class="wheel-outer-frame">
                     <div class="wheel-container" id="wheelContainer">
                         <canvas id="wheelCanvas"></canvas>
 
-                        <!-- Logo Centralizada no Miolo da Roleta -->
                         <div class="wheel-center-cap">
                             <img src="assets/logo-mix.png" alt="Mix Central Logo" class="cap-logo"
                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
@@ -67,7 +71,6 @@
                     </div>
                 </div>
 
-                <!-- Suporte / Base Física da Roleta -->
                 <div class="wheel-stand-base">
                     <div class="stand-text">
                         <span class="dash">-</span> ROLETA PREMIADA <span class="dash">-</span>
@@ -100,8 +103,8 @@
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('./sw.js')
-                    .then(reg => console.log('PWA Service Worker registrado com sucesso!', reg))
-                    .catch(err => console.log('Falha ao registrar PWA Service Worker:', err));
+                    .then(reg => console.log('PWA registrado!', reg))
+                    .catch(err => console.error('Erro SW:', err));
             });
         }
     </script>

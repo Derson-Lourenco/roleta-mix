@@ -1,8 +1,11 @@
-const CACHE_NAME = 'roleta-mix-v1';
+const CACHE_NAME = 'roleta-mix-v2';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
+  './manifest.json',
+  './css/style.css',
   './js/roleta.js',
+  './assets/logo-mix.png',
   './assets/icons/presente.png',
   './assets/icons/cupom.png',
   './assets/icons/caneta.png',
@@ -13,7 +16,6 @@ const ASSETS_TO_CACHE = [
   './assets/icons/porcentagem.png'
 ];
 
-// Instalação do Service Worker e gravação do cache
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
@@ -23,7 +25,6 @@ self.addEventListener('install', (event) => {
   self.skipWaiting();
 });
 
-// Ativação do Service Worker
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((cacheNames) => {
@@ -39,7 +40,6 @@ self.addEventListener('activate', (event) => {
   self.clients.claim();
 });
 
-// Intercepta requisições e serve do cache se offline
 self.addEventListener('fetch', (event) => {
   event.respondWith(
     caches.match(event.request).then((response) => {
