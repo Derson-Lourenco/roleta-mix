@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roleta Premiada - Mix</title>
+    <!-- Fontes do Google: Montserrat e Caveat (para o texto manuscrito) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Montserrat:ital,wght@0,400;0,700;0,800;0,900;1,700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="roleta-page">
+    <div class="app-container">
+        <!-- Topo: Logo Oficial Mix + Slogan Manuscrito -->
+        <header class="header">
+            <div class="logo-group">
+                <img src="assets/logo-mix.png" alt="Mix Logo" class="mix-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="logo-fallback" style="display:none;">MIX<span>SUA LOJA MAIS COMPLETA</span></div>
+            </div>
+
+            <div class="handwritten-slogan">
+                <span>Mais que produtos,</span>
+                <span>soluções para o seu dia.</span>
+                <svg class="slogan-underline" viewBox="0 0 100 20" preserveAspectRatio="none">
+                    <path d="M5,15 Q50,5 95,12" stroke="#F58220" stroke-width="4" fill="none" stroke-linecap="round"/>
+                </svg>
+            </div>
+
+            <a href="admin.html" class="admin-link" title="Painel Administrativo">⚙️ Admin</a>
+        </header>
+
+        <!-- Centro: Área da Roleta Física 3D -->
+        <main class="wheel-section">
+            <div class="wheel-wrapper">
+                <!-- Ponteiro fixo no topo (Laranja com contorno escuro) -->
+                <div class="wheel-pointer"></div>
+
+                <!-- Container Principal da Roleta com Moldura Verde -->
+                <div class="wheel-outer-frame">
+                    <div class="wheel-container" id="wheelContainer">
+                        <canvas id="wheelCanvas"></canvas>
+                        
+                        <!-- Logo Centralizada no Miolo da Roleta -->
+                        <div class="wheel-center-cap">
+                            <img src="assets/logo-mix.png" alt="Mix Central Logo" class="cap-logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                            <div class="cap-logo-fallback" style="display:none;">MIX<span>SUA LOJA MAIS COMPLETA</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Suporte / Base Física da Roleta -->
+                <div class="wheel-stand-base">
+                    <div class="stand-text">
+                        <span class="dash">-</span> ROLETA PREMIADA <span class="dash">-</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Base: Botão de Ação para Girar -->
+        <footer class="controls-section">
+            <button id="spinBtn" class="spin-button">
+                GIRAR A ROLETA
+            </button>
+        </footer>
+    </div>
+
+    <!-- Modal de Resultado -->
+    <div id="resultModal" class="modal-overlay hidden">
+        <div class="modal-card">
+            <div id="modalIcon" class="modal-icon">🎉</div>
+            <h2 id="modalTitle" class="modal-title">PARABÉNS!</h2>
+            <p id="modalSubtitle" class="modal-subtitle">Você ganhou</p>
+            <div id="modalPrize" class="modal-prize-name">NOME DO PRÊMIO</div>
+            <button id="closeModalBtn" class="modal-button">OK</button>
+        </div>
+    </div>
+
+    <script src="js/roleta.js"></script>
+</body>
+</html>

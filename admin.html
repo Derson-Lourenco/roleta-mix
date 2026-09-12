@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Administrativo - Roleta Mix</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="admin-page">
+    <div class="admin-container">
+        <header class="admin-header">
+            <div class="admin-header-left">
+                <img src="assets/logo-mix.png" alt="Mix Logo" class="admin-logo">
+                <h1>Painel Administrativo - Prêmios</h1>
+            </div>
+            <a href="index.html" class="back-link">⬅ Voltar para a Roleta</a>
+        </header>
+
+        <main class="admin-main">
+            <!-- Formulário de Cadastro / Edição -->
+            <section class="admin-card">
+                <h2 id="formTitle">Cadastrar Novo Prêmio</h2>
+                <form id="prizeForm" class="prize-form">
+                    <input type="hidden" id="prizeId" value="">
+                    
+                    <div class="form-group">
+                        <label for="prizeName">Nome do Prêmio *</label>
+                        <input type="text" id="prizeName" required placeholder="Ex: Squeeze Mix, Vale R$ 20..." maxlength="30">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="prizeQty">Quantidade Disponível *</label>
+                        <input type="number" id="prizeQty" required min="1" value="5">
+                    </div>
+
+                    <div class="form-group checkbox-group">
+                        <label class="switch-label">
+                            <input type="checkbox" id="prizeActive" checked>
+                            <span>Ativo na roleta</span>
+                        </label>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" id="saveBtn" class="btn btn-primary">ADICIONAR PRÊMIO</button>
+                        <button type="button" id="cancelBtn" class="btn btn-secondary hidden">CANCELAR</button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Tabela / Lista de Prêmios -->
+            <section class="admin-card">
+                <h2>Prêmios Cadastrados</h2>
+                <div class="table-responsive">
+                    <table class="admin-table">
+                        <thead>
+                            <tr>
+                                <th>Prêmio</th>
+                                <th>Quantidade</th>
+                                <th>Status</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="prizeTableBody">
+                            <!-- Preenchido via JS -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="admin-info-note">
+                    <strong>Nota:</strong> O item <em>"NÃO FOI DESSA VEZ"</em> é permanente e sempre participa das rodadas.
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/admin.js"></script>
+</body>
+</html>
