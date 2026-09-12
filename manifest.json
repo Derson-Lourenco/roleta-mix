@@ -1,24 +1,26 @@
 {
-  "id": "/roleta-mix/",
-  "short_name": "Roleta MIX",
+  "id": "roleta-mix-app",
   "name": "Roleta Premiada MIX",
+  "short_name": "Roleta MIX",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["standalone", "fullscreen"],
+  "background_color": "#0E4F36",
+  "theme_color": "#0E4F36",
+  "orientation": "portrait",
   "icons": [
     {
       "src": "assets/icons/presente.png",
-      "type": "image/png",
       "sizes": "192x192",
-      "purpose": "any maskable"
+      "type": "image/png",
+      "purpose": "any"
     },
     {
       "src": "assets/icons/presente.png",
-      "type": "image/png",
       "sizes": "512x512",
+      "type": "image/png",
       "purpose": "any maskable"
     }
-  ],
-  "start_url": "./index.html",
-  "background_color": "#0E4F36",
-  "theme_color": "#0E4F36",
-  "display": "standalone",
-  "orientation": "portrait"
+  ]
 }

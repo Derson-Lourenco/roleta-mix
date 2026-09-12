@@ -202,26 +202,38 @@ function renderWheel() {
         ctx.font = `900 ${titleFontSize}px 'Montserrat', sans-serif`;
 
         const isCupomOrCamera = seg.iconSrc.includes("cupom.png") || seg.iconSrc.includes("camera.png");
+        let titleLinesCount = 0;
 
         if (!isCupomOrCamera) {
             const titleWords = seg.name.split(" ");
             if (titleWords.length > 2 && seg.name.length > 12) {
                 const mid = Math.ceil(titleWords.length / 2);
                 ctx.fillText(titleWords.slice(0, mid).join(" "), 0, 0);
-                ctx.fillText(titleWords.slice(mid).join(" "), 0, titleFontSize * 1.1);
+                ctx.fillText(titleWords.slice(mid).join(" "), 0, titleFontSize * 1.15);
+                titleLinesCount = 2;
             } else {
                 ctx.fillText(seg.name, 0, 0);
+                titleLinesCount = 1;
             }
         }
 
-        // Subtítulo do Prêmio
+        // Subtítulo do Prêmio com offset dinâmico para evitar sobreposição
         const subFontSize = Math.max(6.5, Math.min(outerRadius * 0.026, 8.5));
         ctx.font = `700 ${subFontSize}px 'Montserrat', sans-serif`;
         ctx.globalAlpha = 0.9;
 
+        let subStartY = 0;
+        if (titleLinesCount === 2) {
+            subStartY = titleFontSize * 1.15 + subFontSize * 1.3;
+        } else if (titleLinesCount === 1) {
+            subStartY = titleFontSize * 1.25;
+        } else {
+            subStartY = 0;
+        }
+
         const lines = seg.sub.split("\n");
         lines.forEach((line, idx) => {
-            ctx.fillText(line, 0, titleFontSize * 1.25 + idx * subFontSize * 1.2);
+            ctx.fillText(line, 0, subStartY + idx * subFontSize * 1.2);
         });
 
         ctx.restore();
