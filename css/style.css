@@ -29,6 +29,7 @@ body, html {
     overflow: hidden; /* Impede a rolagem da tela */
 }
 
+
 /* App Container Ajustado */
 .app-container {
     display: flex;

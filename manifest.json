@@ -4,11 +4,11 @@
   "short_name": "Roleta MIX",
   "start_url": "./index.html",
   "scope": "./",
-  "display": "standalone",
-  "display_override": ["standalone", "fullscreen"],
+  "display": "fullscreen",
+  "display_override": ["fullscreen", "standalone"],
   "background_color": "#0E4F36",
   "theme_color": "#0E4F36",
-  "orientation": "portrait",
+  "orientation": "any",
   "icons": [
     {
       "src": "assets/icons/presente.png",
