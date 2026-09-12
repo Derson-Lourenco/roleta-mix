@@ -1,0 +1,21 @@
+{
+  "short_name": "Roleta MIX",
+  "name": "Roleta Premiada MIX",
+  "icons": [
+    {
+      "src": "assets/icons/presente.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "assets/icons/presente.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "./index.html",
+  "background_color": "#0E4F36",
+  "theme_color": "#0E4F36",
+  "display": "standalone",
+  "orientation": "portrait"
+}

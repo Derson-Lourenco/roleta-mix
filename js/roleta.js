@@ -11,7 +11,7 @@ const DEFAULT_PREMIO_CONFIG = [
         color: "#FFFFFF",
     },
     {
-        name: "",
+        name: "DESCONTO ESPECIAL",
         sub: "APROVEITE\nESSA VANTAGEM!",
         iconSrc: "assets/icons/cupom.png",
         bg: "#F58220",
@@ -46,7 +46,7 @@ const DEFAULT_PREMIO_CONFIG = [
         color: "#0E4F36",
     },
     {
-        name: "",
+        name: "POSTE UMA FOTO",
         sub: "COMPARTILHE ESSE\nMOMENTO COM A GENTE!",
         iconSrc: "assets/icons/camera.png",
         bg: "#0E4F36",
@@ -174,7 +174,6 @@ function renderWheel() {
         ctx.rotate(midAngle + Math.PI / 2);
 
         // Renderizar a Imagem PNG do Ícone
-        // Renderizar a Imagem PNG do Ícone
         const iconImg = loadedImages[i];
         if (iconImg) {
             let iconSize = outerRadius * 0.22;
@@ -182,33 +181,37 @@ function renderWheel() {
 
             // Aumento exclusivo para a imagem da CÂMERA
             if (seg.iconSrc.includes("camera.png")) {
-                iconSize *= 1.75; // +40% de tamanho
+                iconSize *= 1.75;
                 iconYOffset = -outerRadius * 0.40;
             }
 
             // Aumento exclusivo para a imagem do CUPOM
             if (seg.iconSrc.includes("cupom.png")) {
-                iconSize *= 1.40; // +35% de tamanho
-                iconYOffset = -outerRadius * 0.34; // Ajusta levemente a altura
+                iconSize *= 1.40;
+                iconYOffset = -outerRadius * 0.34;
             }
 
             ctx.drawImage(iconImg, -iconSize / 2, iconYOffset, iconSize, iconSize);
         }
 
-        // Título do Prêmio (Texto em Negrito Identico)
+        // Título do Prêmio (SÓ desenha na fatia se NÃO for Cupom nem Câmera)
         ctx.fillStyle = seg.color;
         ctx.textAlign = "center";
 
         const titleFontSize = Math.max(9, Math.min(outerRadius * 0.045, 14));
         ctx.font = `900 ${titleFontSize}px 'Montserrat', sans-serif`;
 
-        const titleWords = seg.name.split(" ");
-        if (titleWords.length > 2 && seg.name.length > 12) {
-            const mid = Math.ceil(titleWords.length / 2);
-            ctx.fillText(titleWords.slice(0, mid).join(" "), 0, 0);
-            ctx.fillText(titleWords.slice(mid).join(" "), 0, titleFontSize * 1.1);
-        } else {
-            ctx.fillText(seg.name, 0, 0);
+        const isCupomOrCamera = seg.iconSrc.includes("cupom.png") || seg.iconSrc.includes("camera.png");
+
+        if (!isCupomOrCamera) {
+            const titleWords = seg.name.split(" ");
+            if (titleWords.length > 2 && seg.name.length > 12) {
+                const mid = Math.ceil(titleWords.length / 2);
+                ctx.fillText(titleWords.slice(0, mid).join(" "), 0, 0);
+                ctx.fillText(titleWords.slice(mid).join(" "), 0, titleFontSize * 1.1);
+            } else {
+                ctx.fillText(seg.name, 0, 0);
+            }
         }
 
         // Subtítulo do Prêmio
@@ -298,7 +301,7 @@ function startSpin() {
 }
 
 function onSpinComplete(prize) {
-    if (prize.name.includes("GIRE NOVAMENTE")) {
+    if (prize.name && prize.name.includes("GIRE NOVAMENTE")) {
         modalIcon.textContent = "🔄";
         modalTitle.textContent = "GIRE NOVAMENTE!";
         modalSubtitle.textContent = "A sorte está ao seu lado";
@@ -308,7 +311,31 @@ function onSpinComplete(prize) {
         modalIcon.textContent = "🎉";
         modalTitle.textContent = "PARABÉNS!";
         modalSubtitle.textContent = "Você ganhou";
-        modalPrize.textContent = prize.name;
+
+        let finalPrizeText = "";
+
+        // 1. Verifica se é o prêmio da CÂMERA
+        if (prize.iconSrc && prize.iconSrc.includes("camera.png")) {
+            finalPrizeText = "POSTE UMA FOTO";
+        } 
+        // 2. Verifica se é o prêmio do CUPOM
+        else if (prize.iconSrc && prize.iconSrc.includes("cupom.png")) {
+            finalPrizeText = "DESCONTO ESPECIAL";
+        } 
+        // 3. Se tiver name preenchido, usa o name
+        else if (prize.name && prize.name.trim() !== "") {
+            finalPrizeText = prize.name;
+        } 
+        // 4. Se não tiver name, usa a primeira linha do subtítulo
+        else if (prize.sub && prize.sub.trim() !== "") {
+            finalPrizeText = prize.sub.split("\n")[0];
+        } 
+        // 5. Fallback final
+        else {
+            finalPrizeText = "PRÊMIO ESPECIAL";
+        }
+
+        modalPrize.textContent = finalPrizeText;
         closeModalBtn.textContent = "RESGATAR PRÊMIO";
     }
 
